@@ -1,18 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
+
+
 function App() {
+ const [todos, setTodos] = useState([]);
 
   useEffect (() => {
-    fetch ("http://localhost:4000/")
+    fetch ("http://localhost:4000/todos")
       .then (response => response.json ())
-      .then (todo =>    (todo));
+      .then (todosFromServer => setTodos (todosFromServer));
   } , []);
+
   return (
     <div className="App">
-      <h1>Todo App</h1>
+      
       <form className="todo-form">
-        <div>
+      <h1>Todo App</h1>
+        <div className="form-header">
+          <div>
         <input className="add-todo" type="text" placeholder="Add Todo" />
         <button className="submit-btn" type="submit">
           Add
@@ -20,24 +26,19 @@ function App() {
         <button className="clear-btn" type="submit">
           Clear
         </button>
+        </div>
         <input className="search-todo" type="text" placeholder="Search Todo" />
         </div>
         <ul>
+          {todos.map (todo => (
+
           <li>
             <input type="checkbox" />
-            <span>Buy Milk</span>
+            <span>{todo.title}</span>
             <button className="delete-btn">Delete</button>
           </li>
-          <li>
-            <input type="checkbox" />
-            <span>Buy Eggs</span>
-            <button className="delete-btn">Delete</button>
-          </li>
-          <li>
-            <input type="checkbox" />
-            <span>Buy Bread</span>
-            <button className="delete-btn">Delete</button>
-          </li>
+          ))}
+   
         </ul>
       </form>
     </div>

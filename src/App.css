@@ -40,3 +40,66 @@
 button {
   font-size: calc(10px + 2vmin);
 }
+
+.todo-form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.form-header{
+  display: grid;
+  gap: 10px;
+  
+}
+
+.delete-btn{
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: 10px;
+  width: 70px;
+  font-size: medium;
+}
+
+.clear-btn{
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: 10px;
+  width: 70px;
+  font-size: medium;
+}
+
+.submit-btn{
+  background-color: #38741a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: 10px;
+  width: 70px;
+  font-size: medium;
+}
+
+
+
+input .search-todo .add-todo{
+  font-size: large;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 50%;
+}
+
+li {
+  list-style-type: none;
+  padding: 10px;
+}

@@ -1,14 +1,26 @@
 {
   "todos": [
     {
-      "todo": "",
-      "completed": false,
-      "id": 1
+      "id": 1,
+      "title": "Learn React",
+      "completed": true
     },
     {
-      "todo": "redi",
-      "completed": false,
-      "id": 2
+      "id": 2,
+      "title": "Learn HTML",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "title": "Learn CSS",
+      "completed": true
+    },
+    {
+      "id": 4,
+      "title": "Learn JavaScript",
+      "completed": false
     }
+ 
   ]
 }
+

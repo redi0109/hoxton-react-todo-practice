@@ -1,81 +1,41 @@
-import {
-  JSXElementConstructor,
-  ReactElement,
-  ReactFragment,
-  ReactPortal,
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 type Todo = {
-  map: any;
-  filter: any;
-  length: number;
   id: number;
   title: string;
   completed: boolean;
 };
 
 function App() {
-  const [todos, setTodos] = useState([]);
-  const [search, setSearchTodo] = useState("");
+  const [todos, setTodos] = useState<Todo[]>([]);
 
-  useEffect(() => {
-    fetch("http://localhost:4000/todos")
-      .then((response) => response.json())
-      .then((todosFromServer) => setTodos(todosFromServer));
-  }, []);
+useEffect(() => {
+  fetch("http://localhost:3333/todos")
+    .then((resp) => resp.json())
+    .then((todosFromServer) => setTodos(todosFromServer));
+}, []);
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Todo List</h1>
+        <input type="text" placeholder="Search Todo" />
+      </header>
+      <main className="App-main">
+        <ul className="todo-list">
+          <li>Learn React</li>
+          <li>Learn React</li>
+          <li>Learn React</li>
+        </ul>
 
-  function createTodo(title: string) {
-    fetch("http://localhost:4000/todos", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title }),
-    })
-      .then((response) => response.json())
-      .then((todo) => {
-       setTodos([...todos, todo]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+        <form>
+          <input type="text" placeholder="Add Todo" />
+        </form>
 
-   function deleteTodo(id: number) {
-    fetch(`http://localhost:4000/todos/${id}`, {
-      method: "DELETE",
-    }).then((response) => response.json());
-    let newTodos = structuredClone(todos);
-    newTodos = newTodos.filter((todo: { id: number }) => todo.id !== id);
-    setTodos(newTodos);
-  }
+      </main>
 
- function toggleCompleted(id: number) {
-    let newTodos = structuredClone(todos);
-    newTodos.forEach((todo: { id: number; completed: boolean }) => {
-      if (todo.id === id) {
-        todo.completed = !todo.completed;
-      }
-    });
-
-  function filterTodos(search: string) {
-      let newTodos = structuredClone(todos);
-      newTodos = newTodos.filter((todo: { title: string }) => {
-        return todo.title.includes(search);
-      });
-    }
-
-    return (
-      <div className="App">
-      <todoForm/>
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default App ;
-export createTodo, deleteTodo, toggleCompleted, filterTodos;
-
+export default App;

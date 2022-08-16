@@ -1,5 +1,6 @@
 import {todoHeader} from './todoHeader';
 
+
 export function todoForm () {
     return(
         <form
@@ -9,7 +10,10 @@ export function todoForm () {
           createTodo(event.target.todo.value);
         }}
       >
-        <todoHeader />
+        <todoHeader 
+        setSearchTodo = {setSearchTodo}
+        filterTodos = {filterTodos} 
+        />
     
         <ul>
           {todos.map((todo: Todo) => (

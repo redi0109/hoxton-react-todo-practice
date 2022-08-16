@@ -44,7 +44,7 @@ function App() {
       });
   }
 
-  function deleteTodo(id: number) {
+   function deleteTodo(id: number) {
     fetch(`http://localhost:4000/todos/${id}`, {
       method: "DELETE",
     }).then((response) => response.json());
@@ -53,7 +53,7 @@ function App() {
     setTodos(newTodos);
   }
 
-  function toggleCompleted(id: number) {
+ function toggleCompleted(id: number) {
     let newTodos = structuredClone(todos);
     newTodos.forEach((todo: { id: number; completed: boolean }) => {
       if (todo.id === id) {
@@ -61,7 +61,7 @@ function App() {
       }
     });
 
-    function filterTodos(search: string) {
+  function filterTodos(search: string) {
       let newTodos = structuredClone(todos);
       newTodos = newTodos.filter((todo: { title: string }) => {
         return todo.title.includes(search);
@@ -70,70 +70,12 @@ function App() {
 
     return (
       <div className="App">
-        <form
-          className="todo-form"
-          onSubmit={(event) => {
-            event.preventDefault();
-            createTodo(event.target.todo.value);
-          }}
-        >
-          <h1>Todo App</h1>
-          <div className="form-header">
-            <div>
-              <input className="add-todo" type="text" placeholder="Add Todo" />
-              <button className="submit-btn" type="submit">
-                Add
-              </button>
-
-              <button className="clear-btn" type="submit">
-                Clear
-              </button>
-            </div>
-            <input
-              className="search-todo"
-              type="text"
-              placeholder="Search Todo"
-              onChange={(event) => {
-                setSearchTodo(event.target.value);
-                filterTodos(search);
-              }}
-            />
-          </div>
-          <ul>
-            {todos.map((todo: Todo) => (
-              <li>
-                <input
-                  type="checkbox"
-                  checked={todo.completed}
-                  onChange={() => {
-                    const updatedTodos = todos.map(
-                      (todo: { id: any; completed: any }) => {
-                        if (todo.id === todo.id) {
-                          return { ...todo, completed: !todo.completed };
-                        }
-                        return todo;
-                      }
-                    );
-                    setTodos(updatedTodos);
-                  }}
-                />
-                <span>{todo.title}</span>
-                <button
-                  className="delete-btn"
-                  type="submit"
-                  onClick={() => {
-                    deleteTodo(todo.id);
-                  }}
-                >
-                  Delete
-                </button>
-              </li>
-            ))}
-          </ul>
-        </form>
+      <todoForm/>
       </div>
     );
   }
 }
 
-export default App;
+export default App ;
+export createTodo, deleteTodo, toggleCompleted, filterTodos;
+

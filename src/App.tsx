@@ -9,31 +9,44 @@ type Todo = {
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [content, setContent] = useState<string>("");
 
-useEffect(() => {
-  fetch("http://localhost:3333/todos")
-    .then((resp) => resp.json())
-    .then((todosFromServer) => setTodos(todosFromServer));
-}, []);
+  useEffect(() => {
+    fetch("http://localhost:3333/todos")
+      .then((resp) => resp.json())
+      .then((todosFromServer) => setTodos(todosFromServer));
+  }, []);
+
+
+
+
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Todo List</h1>
-        <input type="text" placeholder="Search Todo" />
+        <input type="text" placeholder="Search Todo"
+          onChange={(event)=>{
+            setContent(event.target.value)
+            searchTodo()
+          }} />
       </header>
       <main className="App-main">
         <ul className="todo-list">
-          <li>Learn React</li>
-          <li>Learn React</li>
-          <li>Learn React</li>
+          {todos.map((todo) => (
+            <li key={todo.id} className={todo.completed ? "completed" : "not-completed"}>
+              {todo.title}
+            </li>
+          ))}
+           
+
+        
         </ul>
 
         <form>
           <input type="text" placeholder="Add Todo" />
         </form>
-
       </main>
-
     </div>
   );
 }

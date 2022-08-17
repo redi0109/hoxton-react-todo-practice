@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "Learn React",
-      "completed": true
+      "completed": false
     },
     {
       "id": 2,
@@ -13,17 +13,12 @@
     {
       "id": 3,
       "title": "Learn CSS",
-      "completed": true
+      "completed": false
     },
     {
       "id": 4,
       "title": "Learn JavaScript",
       "completed": false
-    },
-    {
-      "content": "redi",
-      "completed": false,
-      "id": 5
     }
   ]
 }

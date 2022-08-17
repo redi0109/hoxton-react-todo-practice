@@ -69,25 +69,25 @@ function App() {
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            let newTodo = {
-              content: event.target.newTodo.value,
+            let addTodo = {
+              content: event.target.addTodo.value,
               completed: false,
             };
-            setTodos([...todos, newTodo]);
+            setTodos([...todos, addTodo]);
             fetch("http://localhost:4000/todos", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                content: event.target.newTodo.value,
+                content: event.target.addTodo.value,
                 completed: false,
               }),
             });
             event.target.reset();
           }}
         >
-          <input placeholder="add a todo" name="newTodo"></input>
+          <input placeholder="add a todo" name="addTodo"></input>
           <button>Submit</button>
         </form>
       </main>
